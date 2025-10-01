@@ -45,7 +45,7 @@ const EnhancedDashboard = () => {
 
   const fetchSystemHealth = async () => {
     try {
-      const response = await fetch("/api/error-handling/health-check");
+      const response = await fetch("https://mzhyi8c1pp9z.manus.space/api/error-handling/health-check");
       const data = await response.json();
       setSystemHealth(data.health);
     } catch (error) {
@@ -55,7 +55,7 @@ const EnhancedDashboard = () => {
 
   const fetchRecentProjects = async () => {
     try {
-      const response = await fetch("/api/projects/recent");
+      const response = await fetch("https://mzhyi8c1pp9z.manus.space/api/projects/recent");
       const data = await response.json();
       setRecentProjects(data.projects || []);
     } catch (error) {
@@ -65,7 +65,7 @@ const EnhancedDashboard = () => {
 
   const fetchErrorStatistics = async () => {
     try {
-      const response = await fetch("/api/error-handling/statistics");
+      const response = await fetch("https://mzhyi8c1pp9z.manus.space/api/error-handling/statistics");
       const data = await response.json();
       setErrorStats(data.statistics);
     } catch (error) {

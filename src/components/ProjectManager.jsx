@@ -24,7 +24,7 @@ const ProjectManager = ({ onSelectProject, selectedProjectId }) => {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('/api/projects')
+      const response = await fetch('https://mzhyi8c1pp9z.manus.space/api/projects')
       const data = await response.json()
       if (data.success) {
         setProjects(data.projects)
@@ -39,7 +39,7 @@ const ProjectManager = ({ onSelectProject, selectedProjectId }) => {
   const handleCreateProject = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('/api/projects', {
+      const response = await fetch('https://mzhyi8c1pp9z.manus.space/api/projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -59,7 +59,7 @@ const ProjectManager = ({ onSelectProject, selectedProjectId }) => {
   const handleUpdateProject = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch(`/api/projects/${editingProject.id}`, {
+      const response = await fetch(`https://mzhyi8c1pp9z.manus.space/api/projects/${editingProject.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -82,7 +82,7 @@ const ProjectManager = ({ onSelectProject, selectedProjectId }) => {
     }
     
     try {
-      const response = await fetch(`/api/projects/${projectId}`, {
+      const response = await fetch(`https://mzhyi8c1pp9z.manus.space/api/projects/${projectId}`, {
         method: 'DELETE'
       })
       
