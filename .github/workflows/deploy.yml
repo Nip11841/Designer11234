@@ -29,3 +29,6 @@ jobs:
           publish_dir: ./dist
           # Set a custom CNAME if needed, e.g., cname: example.com
 
+
+
+    # Trigger a new deployment
