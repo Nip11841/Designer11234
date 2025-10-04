@@ -46,6 +46,8 @@ const AdvancedPromptInterface = () => {
   const [generatedPrompt, setGeneratedPrompt] = useState('');
   const [promptAnalysis, setPromptAnalysis] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isGeneratingImage, setIsGeneratingImage] = useState(false);
+  const [generatedImageUrl, setGeneratedImageUrl] = useState(null);
   const [promptHistory, setPromptHistory] = useState([]);
 
   const complexityLevels = [
@@ -138,6 +140,37 @@ const AdvancedPromptInterface = () => {
       console.error('Failed to generate prompt:', error);
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const generateImage = async () => {
+    if (!generatedPrompt) {
+      alert("Please generate a prompt first.");
+      return;
+    }
+    setIsGeneratingImage(true);
+    setGeneratedImageUrl(null);
+    try {
+      const response = await fetch("https://mzhyi8c1pp9z.manus.space/api/prompt/generate-image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt: generatedPrompt }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setGeneratedImageUrl(data.image_url);
+      } else {
+        console.error("Failed to generate image:", data.error);
+        alert(`Image generation failed: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Failed to generate image:", error);
+      alert("Image generation failed due to network or server error.");
+    } finally {
+      setIsGeneratingImage(false);
     }
   };
 
@@ -464,21 +497,41 @@ const AdvancedPromptInterface = () => {
                 <div className="flex space-x-2 mt-6">
                   <Button 
                     onClick={generatePrompt} 
-                    disabled={isGenerating}
-                    className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+                    disabled={isGenerating} 
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
                   >
                     {isGenerating ? (
-                      <>
-                        <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                      <span className="flex items-center">
+                        <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
                         Generating...
-                      </>
+                      </span>
                     ) : (
-                      <>
-                        <Wand2 className="h-4 w-4 mr-2" />
+                      <span className="flex items-center">
+                        <Sparkles className="mr-2 h-4 w-4" />
                         Generate Prompt
-                      </>
+                      </span>
                     )}
                   </Button>
+
+                  {generatedPrompt && (
+                    <Button 
+                      onClick={generateImage} 
+                      disabled={isGeneratingImage} 
+                      className="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white hover:from-green-600 hover:to-teal-600 transition-all duration-300 mt-4"
+                    >
+                      {isGeneratingImage ? (
+                        <span className="flex items-center">
+                          <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
+                          Generating Image...
+                        </span>
+                      ) : (
+                        <span className="flex items-center">
+                          <Wand2 className="mr-2 h-4 w-4" />
+                          Generate Image from Prompt
+                        </span>
+                      )}
+                    </Button>
+                  )}
                   <Button variant="outline" onClick={() => setPromptConfig({
                     productType: '',
                     industry: '',
@@ -602,9 +655,31 @@ const AdvancedPromptInterface = () => {
                       </div>
                     </div>
                   )}
-                </CardContent>
-              </Card>
-            )}
+                  </CardContent>
+                </Card>
+              )}
+
+              {generatedImageUrl && (
+                <Card className="border-0 shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <Wand2 className="h-5 w-5 text-blue-600" />
+                      <span>Generated Image</span>
+                    </CardTitle>
+                    <CardDescription>
+                      Image generated from the prompt using DALL-E.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <img src={generatedImageUrl} alt="Generated by DALL-E" className="w-full h-auto rounded-lg shadow-md" />
+                    <a href={generatedImageUrl} target="_blank" rel="noopener noreferrer">
+                      <Button className="w-full">
+                        <Download className="h-4 w-4 mr-2" /> Download Image
+                      </Button>
+                    </a>
+                  </CardContent>
+                </Card>
+              )}
 
             {/* Prompt History */}
             <Card className="border-0 shadow-lg">
