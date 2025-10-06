@@ -345,6 +345,31 @@ const EnhancedDashboard = () => {
                 <ImageGenerator />
               </CardContent>
             </Card>
+
+            {/* Visual Design Studio Section */}
+            <Card className="border-0 shadow-lg">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <Palette className="h-5 w-5 text-blue-600" />
+                  <span>Visual Design Studio</span>
+                </CardTitle>
+                <CardDescription>
+                  Professional drag-and-drop design canvas with advanced tools
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button 
+                  className="w-full h-16 text-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+                  onClick={() => {
+                    // This would open the Visual Design Studio in a new tab or modal
+                    window.open('/design-studio', '_blank');
+                  }}
+                >
+                  <Palette className="h-6 w-6 mr-3" />
+                  Launch Design Studio
+                </Button>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {/* Analyze Tab */}

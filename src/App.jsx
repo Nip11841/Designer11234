@@ -20,6 +20,7 @@ import AdvancedPromptInterface from './components/AdvancedPromptInterface';
 import EnhancedDesignAnalysis from './components/EnhancedDesignAnalysis';
 import AdvancedDesignEditor from './components/AdvancedDesignEditor';
 import PhotoEditor from './components/PhotoEditor';
+import VisualDesignStudio from './components/VisualDesignStudio';
 
 function App() {
   const [currentView, setCurrentView] = useState('dashboard');
@@ -62,6 +63,14 @@ function App() {
       icon: Palette,
       component: PhotoEditor,
       description: 'Advanced photo editing tools'
+    },
+    {
+      id: 'studio',
+      name: 'Design Studio',
+      icon: Sparkles,
+      component: VisualDesignStudio,
+      description: 'Visual design canvas',
+      badge: 'Pro'
     }
   ];
 
