@@ -22,8 +22,10 @@ import {
   Wand2,
   Brain,
   Target,
-  Layers
+  Layers,
+  Image as ImageIcon
 } from 'lucide-react';
+import ImageGenerator from './ImageGenerator';
 
 const EnhancedDashboard = () => {
   const [systemHealth, setSystemHealth] = useState(null);
@@ -327,6 +329,22 @@ const EnhancedDashboard = () => {
                 </CardContent>
               </Card>
             </div>
+            
+            {/* AI Image Generator Section */}
+            <Card className="border-0 shadow-lg">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <ImageIcon className="h-5 w-5 text-purple-600" />
+                  <span>AI Image Generator</span>
+                </CardTitle>
+                <CardDescription>
+                  Generate stunning images with AI-powered creation tools
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ImageGenerator />
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {/* Analyze Tab */}
