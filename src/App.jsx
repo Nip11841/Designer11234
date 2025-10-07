@@ -13,7 +13,8 @@ import {
   X,
   Sparkles,
   Shield,
-  TrendingUp
+  TrendingUp,
+  Users
 } from 'lucide-react';
 import EnhancedDashboard from './components/EnhancedDashboard';
 import AdvancedPromptInterface from './components/AdvancedPromptInterface';
@@ -21,6 +22,7 @@ import EnhancedDesignAnalysis from './components/EnhancedDesignAnalysis';
 import AdvancedDesignEditor from './components/AdvancedDesignEditor';
 import PhotoEditor from './components/PhotoEditor';
 import VisualDesignStudio from './components/VisualDesignStudio';
+import CollaborationHub from './components/CollaborationHub';
 
 function App() {
   const [currentView, setCurrentView] = useState('dashboard');
@@ -71,6 +73,14 @@ function App() {
       component: VisualDesignStudio,
       description: 'Visual design canvas',
       badge: 'Pro'
+    },
+    {
+      id: 'collaboration',
+      name: 'Collaboration',
+      icon: Users,
+      component: CollaborationHub,
+      description: 'Team collaboration & proofing',
+      badge: 'Team'
     }
   ];
 
