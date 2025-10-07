@@ -14,7 +14,9 @@ import {
   Sparkles,
   Shield,
   TrendingUp,
-  Users
+  Users,
+  Printer,
+  FileText
 } from 'lucide-react';
 import EnhancedDashboard from './components/EnhancedDashboard';
 import AdvancedPromptInterface from './components/AdvancedPromptInterface';
@@ -23,6 +25,8 @@ import AdvancedDesignEditor from './components/AdvancedDesignEditor';
 import PhotoEditor from './components/PhotoEditor';
 import VisualDesignStudio from './components/VisualDesignStudio';
 import CollaborationHub from './components/CollaborationHub';
+import PrintExportStudio from './components/PrintExportStudio';
+import TemplateStudio from './components/TemplateStudio';
 
 function App() {
   const [currentView, setCurrentView] = useState('dashboard');
@@ -81,6 +85,22 @@ function App() {
       component: CollaborationHub,
       description: 'Team collaboration & proofing',
       badge: 'Team'
+    },
+    {
+      id: 'print-export',
+      name: 'Print & Export',
+      icon: Printer,
+      component: PrintExportStudio,
+      description: 'Print preparation & file export',
+      badge: 'Pro'
+    },
+    {
+      id: 'templates',
+      name: 'Templates',
+      icon: FileText,
+      component: TemplateStudio,
+      description: 'Template creation & customization',
+      badge: 'New'
     }
   ];
 
