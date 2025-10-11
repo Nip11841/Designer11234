@@ -34,7 +34,7 @@ const ImageGenerator = () => {
   const [success, setSuccess] = useState('');
   const [progress, setProgress] = useState(0);
 
-  const API_BASE_URL = 'https://3dhkilc85z5g.manus.space';
+  const API_BASE_URL = 'https://p9hwiqcqge8e.manus.space';
 
   useEffect(() => {
     fetchStyles();

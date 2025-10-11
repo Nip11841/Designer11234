@@ -32,7 +32,9 @@ import {
   ZoomOut,
   Eye,
   Maximize,
-  Minimize
+  Minimize,
+  Eraser
+
 } from 'lucide-react';
 import DesignCanvas from './DesignCanvas';
 
@@ -116,7 +118,19 @@ const VisualDesignStudio = () => {
 
   const loadTemplate = (template) => {
     // This would load the template into the canvas
-    console.log('Loading template:', template);
+  console.log('Loading template:', template);
+  };
+
+  const handleRemoveBackground = async () => {
+    // Placeholder for background removal logic
+   console.log("Removing background...");    // In a real scenario, this would call the backend API
+    // const response = await fetch(`${API_BASE_URL}/api/ai-tools/remove-background`, { ... });
+  };
+
+  const handleGeneratePalette = async () => {
+    // Placeholder for color palette generation logic
+    console.log("Generating color palette...");
+    // const response = await fetch(`${API_BASE_URL}/api/ai-tools/generate-palette`, { ... });
   };
 
   return (
